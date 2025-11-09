@@ -1,2 +1,26 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui"
+
+  {
+  themes: light --default;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #FF8811;
+  --color-secondary: teal;
+}
+
+.btn-primary {
+  @apply btn text-white border-none bg-gradient-to-r from-[#FF8811] to-[#FF0000];
+}
+
+.btn-primary:hover {
+  @apply opacity-90;
+}
+
+
+.active {
+  @apply text-purple-800 underline
+}

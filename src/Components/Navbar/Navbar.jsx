@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router';
+import { NavLink } from 'react-router';
 
 const Navbar = () => {
     const Links = <>
         <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/courses'>Courses</NavLink></li>
+        <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
     </>
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 px-15 shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -30,7 +32,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link className="btn btn-outline">Login</Link>
+                <button className="btn btn-outline btn-primary hover:scale-105 ">Login</button>
             </div>
         </div>
     );
