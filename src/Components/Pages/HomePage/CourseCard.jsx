@@ -1,10 +1,11 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import { FaBangladeshiTakaSign, FaRegStarHalfStroke } from 'react-icons/fa6';
+import { Link } from 'react-router';
 
 const CourseCard = ({ data }) => {
-    const { title_bangla, batch_name, batch_number, title_english, price } = data;
-    console.log(data)
+    const { title_bangla, batch_name, batch_number, title_english, price, _id } = data;
+    // console.log(data)
     return (
         <div className=' text-center border-2 border-gray-100 px-2 pt-2 py-3 shadow-md shadow-gray-400 my-3 md:my-2 lg:my-5 rounded-lg lg:w-[300px] xl:w-full'>
             <div className='bg-[#690B02] text-white h-[175px] rounded-t-lg hover:scale-105'>
@@ -34,7 +35,7 @@ const CourseCard = ({ data }) => {
                     </div>
                 </div>
             </div>
-            <button className='btn btn-primary p-2 w-full hover:scale-105 '>ViewDetails</button>
+            <Link to={`/courses/details/${_id}`} className='btn btn-primary p-2 w-full hover:scale-105 '>ViewDetails</Link>
         </div>
 
     );

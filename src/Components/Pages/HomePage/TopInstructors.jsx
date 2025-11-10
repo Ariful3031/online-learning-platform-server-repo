@@ -21,7 +21,7 @@ const TopInstructors = () => {
                 <div className='bg-[#B9F8CF] w-full py-5 flex flex-col justify-center items-center rounded-lg mx-auto'>
                     <img className=' w-[100px] h-[100px] rounded-full' src='https://i.pinimg.com/236x/17/fa/44/17fa44e8d7f0d4a341f078b6c94a31ef.jpg' alt="" />
                     <h2 className='text-xl font-semibold mt-2'>Nasrin Akter</h2>
-                    <h2 className='text-xl text-center text-[#252432]'>Primary Teacher Trainer</h2>
+                    <h2 className='text-xl text-center text-[#252432]'>Bangla Grammar</h2>
                     <p className='text-[#252432]'>6 years Experienced</p>
                 </div>
                 <div className='bg-[#B9F8CF] w-full py-5 flex flex-col justify-center items-center rounded-lg mx-auto'>
@@ -45,7 +45,7 @@ const TopInstructors = () => {
                 <div className='bg-[#B9F8CF] w-full py-5 flex flex-col justify-center items-center rounded-lg mx-auto'>
                     <img className=' w-[100px] h-[100px] rounded-full' src='https://media.istockphoto.com/id/687830554/photo/portrait-of-a-happy-latin-american-teacher-at-the-school.jpg?s=612x612&w=0&k=20&c=JACpTuv10ZV6OF-xMi4vYHzeCZV9hoImPII11CjHMOU=' alt="" />
                     <h2 className='text-xl font-semibold mt-2'>Lamia Chowdhury</h2>
-                    <h2 className='text-xl text-center text-[#252432]'>General Knowledge Specialist</h2>
+                    <h2 className='text-xl text-center text-[#252432]'>General Knowledge </h2>
                     <p className='text-[#252432]'>8 years Experienced</p>
                 </div>
                 <div className='bg-[#B9F8CF] w-full py-5 flex flex-col justify-center items-center rounded-lg mx-auto'>
