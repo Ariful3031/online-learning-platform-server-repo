@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 
+
 const Navbar = () => {
 
     const { user, logoutUser } = useContext(AuthContext);
@@ -9,8 +10,6 @@ const Navbar = () => {
     const Links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/courses'>Courses</NavLink></li>
-        <li><NavLink to='/login'>Login</NavLink></li>
-        <li><NavLink to='/register'>Register</NavLink></li>
         <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
     </>
     return (
@@ -28,7 +27,8 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <h6 className="footer-title text-xl">Online <br /><span className='text-[#632EE3]'> Learning</span></h6>
+                {/* <a className="btn btn-ghost text-xl">{logoImg}</a> */}
             </div>
             <div className="navbar-center hidden md:flex">
                 <ul className="menu menu-horizontal px-1">

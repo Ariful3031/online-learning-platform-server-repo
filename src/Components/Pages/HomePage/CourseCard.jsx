@@ -4,34 +4,25 @@ import { FaBangladeshiTakaSign, FaRegStarHalfStroke } from 'react-icons/fa6';
 import { Link } from 'react-router';
 
 const CourseCard = ({ data }) => {
-    const { title_bangla, batch_name, batch_number, title_english, price, _id } = data;
+    const { title, imageURL, price, duration, category, _id } = data;
     // console.log(data)
     return (
-        <div className=' text-center border-2 border-gray-100 px-2 pt-2 py-3 shadow-md shadow-gray-400 my-3 md:my-2 lg:my-5 rounded-lg lg:w-[300px] xl:w-full'>
-            <div className='bg-[#690B02] text-white h-[175px] rounded-t-lg hover:scale-105'>
-                <h1 className='text-3xl pt-2 mb-2'>{title_bangla}</h1>
-                <div>
-                    <div className='inline-flex bg-white rounded-full overflow-hidden'>
-                        <p className='px-2 py-1 text-[#070303]'>{batch_name}</p>
-                        <p className='px-2 py-1 bg-amber-400 text-[#070303] rounded-full'>LiveBatch - {batch_number}</p>
-                    </div>
-                </div>
-                <h1 className='mt-3 pb-3 text-3xl'>ভর্তি চলছে...</h1>
+        <div className='border-2 border-gray-100 p-4 shadow-md shadow-gray-400 my-3 md:my-2 lg:my-5 rounded-lg lg:w-[300px] xl:w-full'>
+            <div className=''>
+                <img className='w-full h-[200px]' src={imageURL} alt="" />
             </div>
-            <div className='text-start p-2'>
-                <h1 className='text-[#070303] text-2xl font-semibold'>{title_english}<span> {batch_name}</span><span> Live Batch...</span></h1>
-                <div className='flex items-center justify-between'>
-                    <div className='flex items-center text-2xl font-semibold'>
-                        <FaBangladeshiTakaSign />
-                        <p >{price}</p>
-                    </div>
-
-                    <div className='flex text-orange-400'>
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaRegStarHalfStroke />
+            <div className='p-2'>
+                <h1 className='text-[#070303] text-2xl text-start font-semibold'>{title}</h1>
+                <div className='inline-block bg-[#B9F8CF] px-3 py-1 my-2 rounded-full'>
+                    <h2>{category}</h2>
+                </div>
+                <div className='flex justify-between'>
+                    <div className='w-full flex text-2xl justify-between font-semibold'>
+                        <div className='flex items-center'>
+                            <FaBangladeshiTakaSign />
+                            <p >{price}</p>
+                        </div>
+                        <h1>{duration}</h1>
                     </div>
                 </div>
             </div>
@@ -42,3 +33,8 @@ const CourseCard = ({ data }) => {
 };
 
 export default CourseCard;
+
+
+
+
+

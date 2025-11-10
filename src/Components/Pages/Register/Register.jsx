@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
-// import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { Link, Navigate } from 'react-router';
 import { IoMdEyeOff } from 'react-icons/io';
@@ -12,8 +12,8 @@ const Register = () => {
     const [showPassword, setShowPassword] = useState(false)
 
     // console.log(createUser)
-    // const location = useLocation();
-    // const navigate = useNavigate();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const passwordLengthExpression = /^.{6,}$/
     const passwordNumberExpression = /(?=.*\d)/
@@ -27,7 +27,7 @@ const Register = () => {
             .then((result) => {
                 // console.log(result.user)
                 setUser(result.user);
-                // navigate('/');
+                navigate(`${location.state ? location.state : "/"}`)
                 toast.success('successful login')
             })
             .catch(error => {
@@ -73,7 +73,7 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 setUser(result.user);
-                // Navigate('/');
+                navigate(`${location.state ? location.state : "/"}`)
                 toast.success('Registration success');
             })
             .catch(error => {
