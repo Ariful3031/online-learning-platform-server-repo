@@ -1,14 +1,16 @@
 import React from 'react';
 import Banner from './Banner';
 import PopulationCourse from './PopulationCourse';
+import WhyChooseUs from './WhyChooseUs';
+import TopInstructors from './TopInstructors';
 
 const HomePage = () => {
     return (
         <div>
             <Banner></Banner>
-            <div className=''>
-                <PopulationCourse></PopulationCourse>
-            </div>
+            <PopulationCourse></PopulationCourse>
+            <WhyChooseUs></WhyChooseUs>
+            <TopInstructors></TopInstructors>
 
         </div>
     );
