@@ -7,7 +7,7 @@ import { IoMdEyeOff } from 'react-icons/io';
 import { FaEye } from 'react-icons/fa';
 
 const Register = () => {
-    const { createUser, setUser, user, updateUser, googleSignin } = useContext(AuthContext);
+    const { createUser, setUser, googleSignin } = useContext(AuthContext);
     const [err, setErr] = useState("")
     const [showPassword, setShowPassword] = useState(false)
 
@@ -46,7 +46,7 @@ const Register = () => {
         const password = event.target.password.value;
 
 
-
+        console.log(name, email, image, password)
         if (!passwordLengthExpression.test(password)) {
             setErr('password must be least 6')
             return
@@ -73,17 +73,8 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 setUser(result.user);
-                Navigate('/');
+                // Navigate('/');
                 toast.success('Registration success');
-                updateUser({ displayName: name, photoURL: image })
-                    .then(() => {
-                        // UpdateProfile
-                        setUser({ ...user, displayName: name, photoURL: image });
-                    })
-                    .catch(err => {
-                        console.log(err.message)
-                    })
-                // console.log(result.user)
             })
             .catch(error => {
                 // console.log(error.message)
@@ -189,7 +180,7 @@ const Register = () => {
                                 err && <p className='text-red-500 text-sm mt-2'>{err}</p>
                             }
                             {/* button  */}
-                            <button className="btn font-semibold border-none btn-primary mt-4"> Register</button>
+                            <button className="btn btn-primary font-semibold border-none hover:scale-105  mt-4"> Register</button>
                         </fieldset>
                     </form>
 
