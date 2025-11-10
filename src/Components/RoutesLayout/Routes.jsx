@@ -7,6 +7,8 @@ import MyAddedCourse from "../Pages/DashboardPages/MyAddedCourse";
 import AddCourse from "../Pages/DashboardPages/AddCourse";
 import CoursesPage from "../Pages/CoursePage/CoursesPage";
 import ViewDetails from "../Pages/ViewDetailsPage/ViewDetails";
+import Register from "../Pages/Register/Register";
+import Login from "../Pages/Login/Login";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
                 path: '/courses/details/:id',
                 loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`),
                 Component: ViewDetails
+            },
+            {
+                path: '/register',
+                Component: Register
+            },
+            {
+                path: '/login',
+                Component: Login
             },
             {
                 path: '/dashboard',
