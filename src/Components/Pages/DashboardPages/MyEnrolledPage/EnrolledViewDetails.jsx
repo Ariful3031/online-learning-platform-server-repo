@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { FaBangladeshiTakaSign } from 'react-icons/fa6';
-import { useLoaderData } from 'react-router';
-import { toast } from 'react-toastify';
-import { AuthContext } from '../../Contexts/AuthContext';
+import { Link, useLoaderData } from 'react-router';
+import { AuthContext } from '../../../Contexts/AuthContext';
 
-const ViewDetails = () => {
+
+
+
+const EnrolledViewDetails = () => {
     const { user } = useContext(AuthContext)
 
     console.log(user);
@@ -12,29 +14,8 @@ const ViewDetails = () => {
     // console.log(detailsData)
     const { title, imageURL, category, price, description, duration, _id } = detailsData;
     // console.log(detailsData)
-    const handleEnrollButton = () => {
-        // console.log('enrolled success')
-        const enrolledUser = {
-            course_id: _id,
-            buyer_Name: user.displayName,
-            buyer_email: user.email,
-            buyer_image: user.photoURL
-        }
 
-        fetch('http://localhost:3000/enrolled', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(enrolledUser)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                 toast.success('Enrolled successful')
-            })
-       
-    }
+
     return (
         <div className='bg-[#F1F5E8]'>
             <div className='w-11/12 mx-auto p-10'>
@@ -59,8 +40,7 @@ const ViewDetails = () => {
                         <p className='text-gray-500'>Total Lecture : 0</p>
                         <p className='text-gray-500'>Total Exam : 0</p>
                         <p className='text-gray-500'>Live Class : 0</p>
-
-                        <button onClick={handleEnrollButton} className='btn btn-primary p-2 w-full mt-3 hover:scale-105 '>Enroll Now</button>
+                        <Link to='/dashboard/my_enrolled_course' className='btn btn-primary p-2 w-full mt-3 hover:scale-105 '>Go back </Link>
                     </div>
 
                 </div>
@@ -76,4 +56,4 @@ const ViewDetails = () => {
     );
 };
 
-export default ViewDetails;
+export default EnrolledViewDetails;
