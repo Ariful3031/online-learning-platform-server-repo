@@ -18,7 +18,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => fetch(`http://localhost:3000/courses/population`),
+                loader: () => fetch(`http://localhost:3000/courses`),
                 Component: HomePage,
             },
             {
@@ -44,12 +44,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <DashBoardLayout></DashBoardLayout>,
+                element:
+                    <PrivateRoute>
+                        <DashBoardLayout></DashBoardLayout>
+                    </PrivateRoute>,
                 children: [
 
                     {
-                        index: true,
-                        Component: MyEnrolledCourse,
+                        path: '/dashboard/my_enrolled_course',
+                        Component: MyEnrolledCourse
                     },
                     {
                         path: "/dashboard/my_added_course",

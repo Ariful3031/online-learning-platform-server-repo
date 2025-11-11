@@ -1,5 +1,6 @@
 import React from 'react';
 import bannerImg from '../../../assets/online-learning-platform.avif'
+import { Link } from 'react-router';
 
 const Banner = () => {
     return (
@@ -9,7 +10,7 @@ const Banner = () => {
                 <h2 className='text-xl md:text-5xl font-medium mt-3 md:mt-10'>Online</h2>
                 <h1 className='text-2xl md:text-7xl font-bold text-black my-2 md:my-5'>Education</h1>
                 <p className='text-orange-500 text-xl md:text-3xl font-medium w-[150px] md:w-full'>Get Promo Up to 30% Off <br /> For This Year Only</p>
-                <button className="btn btn-outline btn-primary mt-5 hover:scale-105">Register Now</button>
+                <Link to='/register' className="btn btn-outline btn-primary mt-5 hover:scale-105">Register Now</Link>
             </div>
             <div>
 

@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 
+import logoImg from '../../assets/online logo.png'
+
 
 const Navbar = () => {
 
@@ -13,7 +15,7 @@ const Navbar = () => {
         <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
     </>
     return (
-        <div className="navbar bg-base-100 px-5 md:px-10 lg:px-15 shadow-sm">
+        <div className="navbar bg-[#F0FDF4] px-5 md:px-10 lg:px-15 shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
@@ -27,8 +29,8 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <h6 className="footer-title text-xl">Online <br /><span className='text-[#632EE3]'> Learning</span></h6>
-                {/* <a className="btn btn-ghost text-xl">{logoImg}</a> */}
+                <img className='w-20 h-15 rounded-full' src={logoImg} alt="" />
+
             </div>
             <div className="navbar-center hidden md:flex">
                 <ul className="menu menu-horizontal px-1">

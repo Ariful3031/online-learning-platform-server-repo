@@ -2,13 +2,14 @@ import React from 'react';
 import { FaFacebook, FaGithub, FaInstagramSquare } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router';
+import logoImg from '../../assets/online logo.png'
 
 const Footer = () => {
     return (
         <div>
-            <footer className=" grid grid-cols-6 gap-5 footer mt-5 sm:footer-horizontal bg-neutral text-neutral-content p-10">
+            <footer className=" grid grid-cols-6 gap-5 footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
                 <nav className='col-span-2'>
-                    <h6 className="footer-title text-3xl">Online<span className='text-[#632EE3]'> Learning</span></h6>
+                    <img className='w-20 h-20 rounded-full' src={logoImg} alt="" />
                     <p>
                         Your trusted marketplace for authentic local <br /> products. Discover the best deals from across <br /> Bangladesh.
                     </p>

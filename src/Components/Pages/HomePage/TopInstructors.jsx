@@ -3,8 +3,8 @@ import React from 'react';
 const TopInstructors = () => {
     return (
 
-        <div className='w-11/12 mx-auto'>
-            <h1 className='text-4xl font-semibold my-5 text-black text-center'>Top Instructors</h1>
+        <div className='w-11/12 mx-auto py-5'>
+            <h1 className='text-4xl font-semibold my-3  text-black text-center'>Top Instructors</h1>
             <div className='grid grid-cols-2 md:grid-cols-4 gap-5'>
                 <div className='bg-[#B9F8CF] w-full py-5 flex flex-col justify-center items-center rounded-lg mx-auto'>
                     <img className=' w-[100px] h-[100px] rounded-full' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4ZTlKcptYOMcPK8N4iu0WdSDVRPwKnV2Ktw&s' alt="" />

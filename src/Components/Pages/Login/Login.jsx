@@ -97,7 +97,7 @@ const Login = () => {
     }
 
     return (
-        <div className='bg-[#F0FDF4] w-full mx-auto h-screen my-auto flex justify-center items-center'>
+        <div className='bg-[#FFF0E1] w-full mx-auto h-screen my-auto flex justify-center items-center'>
             <div className="card bg-base-100 w-full mx-auto  max-w-md shrink-0 shadow-2xl">
                 <h1 className='text-2xl text-[#15803D] font-semibold text-center mt-5'>Login Now</h1>
                 <div className="card-body">
