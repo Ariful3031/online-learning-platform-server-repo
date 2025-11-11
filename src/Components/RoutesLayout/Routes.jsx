@@ -23,6 +23,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/courses",
+                loader: () => fetch(`http://localhost:3000/courses`),
                 Component: CoursesPage
             },
             {
