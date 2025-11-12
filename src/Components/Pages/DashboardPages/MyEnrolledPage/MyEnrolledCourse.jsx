@@ -8,7 +8,7 @@ const MyEnrolledCourse = () => {
     const { user } = useContext(AuthContext);
     const [myEnrolled, setMyEnrolled] = useState([]);
     const allCourses = useLoaderData();
-    console.log(allCourses)
+    // console.log(allCourses)
 
     useEffect(() => {
         if (user?.email) {
@@ -16,12 +16,12 @@ const MyEnrolledCourse = () => {
                 .then(res => res.json())
                 .then(data => {
                     setMyEnrolled(data)
-                    console.log(data)
+                    // console.log(data)
                 })
         }
 
     }, [user.email])
-    console.log(myEnrolled);
+    // console.log(myEnrolled);
     const enrolledIds = myEnrolled.map(item => item.course_id);
     const userEnrolledCourses = allCourses.filter(course => enrolledIds.includes(course._id));
     // console.log(userEnrolledCourses)

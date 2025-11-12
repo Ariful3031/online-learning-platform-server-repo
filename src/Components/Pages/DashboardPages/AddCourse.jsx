@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const AddCourse = () => {
     const { user } = useContext(AuthContext)
@@ -11,9 +11,20 @@ const AddCourse = () => {
 
 
     const handleAddCourse = (event) => {
-
         event.preventDefault();
-        const title_course = event.target.title.value;
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, add it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+
+                   const title_course = event.target.title.value;
         const imageURL_course = event.target.image.value;
         const email_course = event.target.email.value;
         const category_course = categoryState;
@@ -34,7 +45,7 @@ const AddCourse = () => {
 
         }
         // console.log(title_course, imageURL_course, email_course, category_course, duration_course, price_course, isFeatured_course, description_course)
-        console.log(newCourse)
+        // console.log(newCourse)
         fetch('http://localhost:3000/courses', {
             method: 'POST',
             headers: {
@@ -44,10 +55,19 @@ const AddCourse = () => {
         })
             .then(res => res.json())
             .then(data => {
-
-                console.log(data)
+                //  console.log(data)
+                if (data.insertedId) {
+                     Swal.fire({
+                    title: "Added it!",
+                    text: "Your course has been added.",
+                    icon: "success"
+                });
+                }
             })
-        toast.success('Your Course Successfully Add')
+            }
+        });
+     
+
 
     }
     //title, image URL, price, duration, category, and description , isFeatured.
@@ -65,7 +85,7 @@ const AddCourse = () => {
                             {/* Email */}
                             <label className="label text-black font-semibold">Email :</label>
                             <input type="email" name='email' required className="input w-9/12 text-black outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " readOnly defaultValue={user.email} />
-                              {/* image url */}
+                            {/* image url */}
                             <label className="label text-black font-semibold">image URL :</label>
                             <input type="url" name='image' required className="input w-full text-black  outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg" />
                             <div className='grid grid-cols-2 gap-5'>

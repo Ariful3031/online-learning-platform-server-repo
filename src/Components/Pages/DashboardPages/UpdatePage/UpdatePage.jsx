@@ -1,60 +1,105 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
-import { toast } from 'react-toastify';
-import { useLoaderData } from 'react-router';
+
+import { useLoaderData, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const UpdatePage = () => {
- const updateCourseData =useLoaderData();
+    const updateCourseData = useLoaderData();
+    // console.log(updateCourseData._id);
+    const navigate =useNavigate();
 
-        console.log(updateCourseData._id);
-     const { user } = useContext(AuthContext)
-        const [categoryState, setCategoryState] = useState(updateCourseData?.category?.toString() || "");
-        const [isFeaturedState, setIsFeaturedState] = useState(updateCourseData?.isFeatured?.toString() || "");
-        // console.log(category, isFeatured)
-        // console.log(user)
-     const handleUpdateCourse = (event) => {
-            event.preventDefault();
-            const title_course = event.target.title.value;
-            const imageURL_course = event.target.image.value;
-            const email_course = event.target.email.value;
-            const category_course = categoryState;
-            const duration_course = event.target.duration.value;
-            const price_course = Number(event.target.price.value);
-            const isFeatured_course = isFeaturedState === "true";
-            const description_course = event.target.description.value;
-    
-            const updateCourse = {
-                title: title_course,
-                imageURL: imageURL_course,
-                email: email_course,
-                category: category_course,
-                duration: duration_course,
-                price: price_course,
-                isFeatured: isFeatured_course,
-                description: description_course
-    
-            }
-            // console.log(title_course, imageURL_course, email_course, category_course, duration_course, price_course, isFeatured_course, description_course)
-            console.log(updateCourse)
-            fetch(`http://localhost:3000/courses/${updateCourseData._id}`, {
-                method: 'PATCH',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(updateCourse)
-            })
-                .then(res => res.json())
-                .then(data => {
-    
-                    console.log(data)
+    const { user } = useContext(AuthContext)
+    const [categoryState, setCategoryState] = useState(updateCourseData?.category?.toString() || "");
+    const [isFeaturedState, setIsFeaturedState] = useState(updateCourseData?.isFeatured?.toString() || "");
+    // console.log(category, isFeatured)
+    // console.log(user)
+    const handleUpdateCourse = (event) => {
+        event.preventDefault();
+
+
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, update it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+
+                const title_course = event.target.title.value;
+                const imageURL_course = event.target.image.value;
+                const email_course = event.target.email.value;
+                const category_course = categoryState;
+                const duration_course = event.target.duration.value;
+                const price_course = Number(event.target.price.value);
+                const isFeatured_course = isFeaturedState === "true";
+                const description_course = event.target.description.value;
+
+                const updateCourse = {
+                    title: title_course,
+                    imageURL: imageURL_course,
+                    email: email_course,
+                    category: category_course,
+                    duration: duration_course,
+                    price: price_course,
+                    isFeatured: isFeatured_course,
+                    description: description_course
+
+                }
+                // console.log(title_course, imageURL_course, email_course, category_course, duration_course, price_course, isFeatured_course, description_course)
+                console.log(updateCourse)
+
+
+                fetch(`http://localhost:3000/courses/${updateCourseData._id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(updateCourse)
                 })
-            toast.success('Successfully Update Your Course ')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.matchedCount) {
+                            Swal.fire({
+                            title: "Updated!",
+                            text: "Your course has been updated.",
+                            icon: "success"
+                        });
+                           navigate(-1);
+                            // console.log(data)
+                        }
+                    })
 
-    
-        }
-        // title, image URL, price, duration, category, and description , isFeatured.
+
+                // .then(res => res.json())
+                // .then(data => {
+                //     // console.log(data)
+                //     if (data.deletedCount) {
+                      
+                //         const coursesRemaining = AddedCourses.filter(course => course._id !== _id);
+                //         setAddedCourses(coursesRemaining);
+                //     }
+                // })
+            }
+        });
+
+
+
+
+
+
+
+
+
+    }
+    // title, image URL, price, duration, category, and description , isFeatured.
     return (
-         <div className='bg-[#FFF0E1] w-full mx-auto p-5 flex flex-col justify-center items-center'>
+        <div className='bg-[#FFF0E1] w-full mx-auto p-5 flex flex-col justify-center items-center'>
             <h1 className='text-4xl font-semibold my-5  text-black text-center'> Update Your Course</h1>
             <div className="card bg-base-100 w-full mx-auto shrink-0 shadow-2xl">
 
@@ -67,7 +112,7 @@ const UpdatePage = () => {
                             {/* Email */}
                             <label className="label text-black font-semibold">Email :</label>
                             <input type="email" name='email' required className="input w-9/12 text-black outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " readOnly defaultValue={user.email} />
-                              {/* image url */}
+                            {/* image url */}
                             <label className="label text-black font-semibold">image URL :</label>
                             <input type="url" name='image' required className="input w-full text-black  outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " defaultValue={updateCourseData.imageURL} />
                             <div className='grid grid-cols-2 gap-5'>
@@ -108,7 +153,7 @@ const UpdatePage = () => {
                                     <select
                                         value={isFeaturedState}
                                         onChange={(e) => setIsFeaturedState(e.target.value)}
-                                    
+
                                         required
                                         className="select text-black w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none"
                                     >

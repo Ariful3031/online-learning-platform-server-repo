@@ -22,7 +22,7 @@ const MyAddedCourse = () => {
             <h1 className='text-4xl font-semibold my-5  text-black w-[320px] mx-auto'>My Added Courses</h1>
             <div className='grid sm:grid-cols-2 md:grid-cols-3 md:gap-5'>
                 {
-              AddedCourses.map(course=><AddedMyCourseCard key={course._id} course={course}></AddedMyCourseCard>)  
+              AddedCourses.map(course=><AddedMyCourseCard key={course._id} setAddedCourses={setAddedCourses} AddedCourses={AddedCourses} course={course}></AddedMyCourseCard>)  
             }
             </div>
         </div>
