@@ -1,14 +1,16 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigation } from "react-router";
+import Loading from '../../Loading/Loading';
 
 const AllCoursesFilter = () => {
 
+const navigation =useNavigation();
+
      const allCourses = useLoaderData();
     const [filteredCourses, setFilteredCourses] = useState(allCourses);
-    // Programming, Language, Computer Basics , Multimedia ,academy
-    // filter set
+   
     const [filters, setFilters] = useState({
         search: "",
         category: "All",
@@ -106,6 +108,7 @@ const AllCoursesFilter = () => {
     return (
         
       <div className="w-11/12 mx-auto p-6">
+        {navigation.state === "loading" && <Loading></Loading>}
                 {/* Filter Section */}
                 <div className="bg-white shadow-md rounded-2xl p-6 mb-8 border border-gray-100">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">

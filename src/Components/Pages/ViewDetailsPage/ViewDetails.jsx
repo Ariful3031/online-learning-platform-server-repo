@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { FaBangladeshiTakaSign } from 'react-icons/fa6';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigation } from 'react-router';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/AuthContext';
+import Loading from '../../Loading/Loading';
 
 const ViewDetails = () => {
     const { user } = useContext(AuthContext)
+    const navigation =useNavigation()
 
     console.log(user);
     const detailsData = useLoaderData();
@@ -40,6 +42,7 @@ const ViewDetails = () => {
             <div className='w-11/12 mx-auto p-10'>
                 <div className=' grid grid-cols-3'>
                     <div className='col-span-2'>
+                         {navigation.state === "loading" && <Loading></Loading>}
                         <img className='w-full h-[500px] rounded-xl' src={imageURL} alt="" />
                     </div>
 

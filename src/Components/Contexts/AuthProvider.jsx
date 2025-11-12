@@ -17,23 +17,25 @@ const AuthProvider = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
 
     const googleSignin = () => {
-
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
 
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
 
     const loginUser = (email, password) => {
-
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
 
 
     const logoutUser = () => {
+        setLoading(true)
         signOut(auth)
             .then(() => {
                 toast.success('signOut Success')

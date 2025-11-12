@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
 
-import { useLoaderData, useNavigate } from 'react-router';
+import { useLoaderData, useNavigate, useNavigation } from 'react-router';
 import Swal from 'sweetalert2';
 
 const UpdatePage = () => {
     const updateCourseData = useLoaderData();
     // console.log(updateCourseData._id);
     const navigate = useNavigate();
+    const navigation =useNavigation();
 
     const { user } = useContext(AuthContext)
     const [categoryState, setCategoryState] = useState(updateCourseData?.category?.toString() || "");
@@ -74,25 +75,15 @@ const UpdatePage = () => {
                             // console.log(data)
                         }
                     })
-
-
-
             }
         });
 
-
-
-
-
-
-
-
-
     }
-    // title, image URL, price, duration, category, and description , isFeatured.
+ 
     return (
         <div className='bg-[#FFF0E1] w-full mx-auto p-5 flex flex-col justify-center items-center'>
             <h1 className='text-4xl font-semibold my-5  text-black text-center'> Update Your Course</h1>
+             {navigation.state === "loading" && <Loading></Loading>}
             <div className="card bg-base-100 w-full mx-auto shrink-0 shadow-2xl">
 
                 <div className="card-body">

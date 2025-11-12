@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import Swal from 'sweetalert2';
+import { useNavigation } from 'react-router';
+import Loading from '../../Loading/Loading';
 
 const AddCourse = () => {
     const { user } = useContext(AuthContext)
     const [categoryState, setCategoryState] = useState("");
     const [isFeaturedState, setIsFeaturedState] = useState("")
+    const navigation =useNavigation();
     // console.log(category, isFeatured)
     // console.log(user)
 
@@ -73,6 +76,7 @@ const AddCourse = () => {
     //title, image URL, price, duration, category, and description , isFeatured.
     return (
         <div className='bg-[#FFF0E1] w-full mx-auto p-5 flex flex-col justify-center items-center'>
+             {navigation.state === "loading" && <Loading></Loading>}
             <h1 className='text-4xl font-semibold my-5  text-black w-[320px] mx-auto'> Add a New Course</h1>
             <div className="card bg-base-100 w-full mx-auto shrink-0 shadow-2xl">
 
