@@ -11,6 +11,7 @@ import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import EnrolledViewDetails from "../Pages/DashboardPages/MyEnrolledPage/EnrolledViewDetails";
+import UpdatePage from "../Pages/DashboardPages/UpdatePage/UpdatePage";
 
 const router = createBrowserRouter([
     {
@@ -36,11 +37,11 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`)
 
             },
- {
-                        path: '/courses/enrolled/details/:id',
-                        element: <EnrolledViewDetails></EnrolledViewDetails>,
-                        loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`)
-                    },
+            {
+                path: '/courses/enrolled/details/:id',
+                element: <EnrolledViewDetails></EnrolledViewDetails>,
+                loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`)
+            },
             {
                 path: '/register',
                 Component: Register
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
                         loader: () => fetch(`http://localhost:3000/courses`),
                         Component: MyEnrolledCourse
                     },
-                   
+
                     {
                         path: "/dashboard/my_added_course",
                         Component: MyAddedCourse
@@ -70,6 +71,11 @@ const router = createBrowserRouter([
                     {
                         path: "/dashboard/Add_course",
                         Component: AddCourse
+                    },
+                    {
+                        path: "/dashboard/my_added_course/update_course/:id",
+                        Component: UpdatePage,
+                        loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`)
                     }
                 ]
 
