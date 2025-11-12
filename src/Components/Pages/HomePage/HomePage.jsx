@@ -4,10 +4,12 @@ import PopulationCourse from './PopulationCourse';
 import WhyChooseUs from './WhyChooseUs';
 import TopInstructors from './TopInstructors';
 
+
 const HomePage = () => {
     return (
         <div>
             <Banner></Banner>
+     
             <PopulationCourse></PopulationCourse>
             <WhyChooseUs></WhyChooseUs>
             <TopInstructors></TopInstructors>

@@ -12,6 +12,7 @@ import Login from "../Pages/Login/Login";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import EnrolledViewDetails from "../Pages/DashboardPages/MyEnrolledPage/EnrolledViewDetails";
 import UpdatePage from "../Pages/DashboardPages/UpdatePage/UpdatePage";
+import AllCoursesFilter from "../Pages/CoursePage/AllCoursesFilter";
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,12 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 Component: Login
+            },
+            {
+                path: '/courses/filter',
+                loader: () => fetch(`http://localhost:3000/courses`),
+                Component: AllCoursesFilter
+
             },
             {
                 path: '/dashboard',

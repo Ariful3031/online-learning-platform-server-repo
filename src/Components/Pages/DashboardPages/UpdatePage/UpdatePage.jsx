@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 const UpdatePage = () => {
     const updateCourseData = useLoaderData();
     // console.log(updateCourseData._id);
-    const navigate =useNavigate();
+    const navigate = useNavigate();
 
     const { user } = useContext(AuthContext)
     const [categoryState, setCategoryState] = useState(updateCourseData?.category?.toString() || "");
@@ -66,25 +66,17 @@ const UpdatePage = () => {
                     .then(data => {
                         if (data.matchedCount) {
                             Swal.fire({
-                            title: "Updated!",
-                            text: "Your course has been updated.",
-                            icon: "success"
-                        });
-                           navigate(-1);
+                                title: "Updated!",
+                                text: "Your course has been updated.",
+                                icon: "success"
+                            });
+                            navigate(-1);
                             // console.log(data)
                         }
                     })
 
 
-                // .then(res => res.json())
-                // .then(data => {
-                //     // console.log(data)
-                //     if (data.deletedCount) {
-                      
-                //         const coursesRemaining = AddedCourses.filter(course => course._id !== _id);
-                //         setAddedCourses(coursesRemaining);
-                //     }
-                // })
+
             }
         });
 
@@ -131,6 +123,11 @@ const UpdatePage = () => {
                                         <option value="Design">Design</option>
                                         <option value="Marketing">Marketing</option>
                                         <option value="Language">Language</option>
+                                        <option value="Programming">Programming</option>
+                                        <option value="Data Science">Data Science</option>
+                                        <option value="Computer Basics">Computer Basics</option>
+                                        <option value="Multimedia">Multimedia</option>
+                                        <option value="Academy">Academy</option>
                                     </select>
                                 </div>
                                 <div>

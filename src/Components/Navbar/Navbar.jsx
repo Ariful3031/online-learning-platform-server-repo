@@ -11,7 +11,7 @@ const Navbar = () => {
 
     const Links = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/courses'>Courses</NavLink></li>
+        <li><NavLink to='/courses'>All-Courses</NavLink></li>
         <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
     </>
     return (
@@ -44,6 +44,7 @@ const Navbar = () => {
                     user ? (<button onClick={logoutUser} className="btn btn-primary hover:scale-105 text-white px-8 rounded-lg">Logout</button>) : (<Link to='/login' className="btn btn-primary hover:scale-105text-white px-8 rounded-lg">Login</Link>)
                 }
             </div>
+
         </div>
     );
 };
