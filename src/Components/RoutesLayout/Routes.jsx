@@ -13,11 +13,15 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import EnrolledViewDetails from "../Pages/DashboardPages/MyEnrolledPage/EnrolledViewDetails";
 import UpdatePage from "../Pages/DashboardPages/UpdatePage/UpdatePage";
 import AllCoursesFilter from "../Pages/CoursePage/AllCoursesFilter";
+import ErrorPage from "../Pages/ErrorPage";
+import Error from "../Pages/Error";
 
 const router = createBrowserRouter([
     {
         path: "/",
         Component: MainLayout,
+        hydrateFallbackElement: <p>loading</p>,
+       
         children: [
             {
                 index: true,
@@ -34,7 +38,7 @@ const router = createBrowserRouter([
                     <PrivateRoute>
                         <ViewDetails></ViewDetails>
                     </PrivateRoute>
-               
+
 
             },
             {
@@ -58,6 +62,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
+                   errorElement: <Error></Error>,
                 element:
                     <PrivateRoute>
                         <DashBoardLayout></DashBoardLayout>
@@ -86,7 +91,11 @@ const router = createBrowserRouter([
                 ]
 
 
-            }
+            },
+        {
+            path:"*",
+            element:<ErrorPage></ErrorPage>
+        }
         ]
     },
 
