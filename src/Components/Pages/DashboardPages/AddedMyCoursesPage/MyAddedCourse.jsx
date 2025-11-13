@@ -13,7 +13,7 @@ const MyAddedCourse = () => {
     // console.log(AddedCourses);
 
     useEffect(()=>{
-        fetch(`http://localhost:3000/courses?email=${user.email}`)
+        fetch(`https://online-learning-platform-eight-pi.vercel.app/courses?email=${user.email}`)
         .then(res=> res.json())
         .then(data=>{
             setAddedCourses(data);

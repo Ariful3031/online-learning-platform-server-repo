@@ -5,7 +5,6 @@ import { AuthContext } from '../../../Contexts/AuthContext';
 
 
 
-
 const EnrolledViewDetails = () => {
     const { user } = useContext(AuthContext)
 

@@ -12,7 +12,7 @@ const MyEnrolledCourse = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:3000/enrolled?email=${user.email}`)
+            fetch(`https://online-learning-platform-eight-pi.vercel.app/enrolled?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setMyEnrolled(data)

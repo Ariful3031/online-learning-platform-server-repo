@@ -49,7 +49,7 @@ const AddCourse = () => {
         }
         // console.log(title_course, imageURL_course, email_course, category_course, duration_course, price_course, isFeatured_course, description_course)
         // console.log(newCourse)
-        fetch('http://localhost:3000/courses', {
+        fetch('https://online-learning-platform-eight-pi.vercel.app/courses', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -56,7 +56,7 @@ const UpdatePage = () => {
                 console.log(updateCourse)
 
 
-                fetch(`http://localhost:3000/courses/${updateCourseData._id}`, {
+                fetch(`https://online-learning-platform-eight-pi.vercel.app/courses/${updateCourseData._id}`, {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'

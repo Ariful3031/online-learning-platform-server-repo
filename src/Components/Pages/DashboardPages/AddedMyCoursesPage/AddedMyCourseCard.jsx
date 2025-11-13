@@ -20,7 +20,7 @@ const AddedMyCourseCard = ({ course,setAddedCourses,AddedCourses }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:3000/courses/${_id}`, {
+                fetch(`https://online-learning-platform-eight-pi.vercel.app/courses/${_id}`, {
 
                     method: "DELETE"
                 })

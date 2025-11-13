@@ -1,21 +1,36 @@
-import React, { useContext } from 'react';
-import { FaBangladeshiTakaSign } from 'react-icons/fa6';
-import { useLoaderData, useNavigation } from 'react-router';
+import React, { useContext, useEffect, useState } from 'react';
+import { FaBangladeshiTakaSign, FaGalacticSenate } from 'react-icons/fa6';
+import { useNavigation, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/AuthContext';
 import Loading from '../../Loading/Loading';
 
 const ViewDetails = () => {
-    const { user } = useContext(AuthContext)
-    const navigation =useNavigation()
+    const { user,loading,setLoading } = useContext(AuthContext)
+    const navigation = useNavigation()
+    const [course, setCourse] = useState([])
+   
 
-    console.log(user);
-    const detailsData = useLoaderData();
-    // console.log(detailsData)
-    const { title, imageURL, category, price, description, duration, _id } = detailsData;
-    // console.log(detailsData)
+    const { id } = useParams();
+
+    useEffect(() => {
+        fetch(`https://online-learning-platform-eight-pi.vercel.app/courses/${id}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                setCourse(data)
+                setLoading(false)
+            })
+    }, [id,setLoading,user])
+    const { title, imageURL, category, price, description, duration, _id } = course;
+
     const handleEnrollButton = () => {
-        // console.log('enrolled success')
+
         const enrolledUser = {
             course_id: _id,
             buyer_Name: user.displayName,
@@ -23,7 +38,7 @@ const ViewDetails = () => {
             buyer_image: user.photoURL
         }
 
-        fetch('http://localhost:3000/enrolled', {
+        fetch('online-learning-platform-eight-pi.vercel.app/enrolled', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -33,16 +48,19 @@ const ViewDetails = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                 toast.success('Enrolled successful')
+                toast.success('Enrolled successful')
             })
-       
+
+    }
+    if(loading){
+        return <Loading></Loading>
     }
     return (
         <div className='bg-[#F1F5E8]'>
             <div className='w-11/12  mx-auto p-10'>
                 <div className=' md:grid md:grid-cols-3'>
                     <div className='md:col-span-2'>
-                         {navigation.state === "loading" && <Loading></Loading>}
+                        {navigation.state === "loading" && <Loading></Loading>}
                         <img className='w-full h-[300px] md:h-[500px] rounded-xl' src={imageURL} alt="" />
                     </div>
 

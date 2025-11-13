@@ -21,12 +21,11 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => fetch(`http://localhost:3000/courses`),
                 Component: HomePage,
             },
             {
                 path: "/courses",
-                loader: () => fetch(`http://localhost:3000/courses`),
+                loader: () => fetch(`https://online-learning-platform-eight-pi.vercel.app/courses`),
                 Component: CoursesPage
             },
             {
@@ -34,14 +33,14 @@ const router = createBrowserRouter([
                 element:
                     <PrivateRoute>
                         <ViewDetails></ViewDetails>
-                    </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`)
+                    </PrivateRoute>
+               
 
             },
             {
                 path: '/courses/enrolled/details/:id',
                 element: <EnrolledViewDetails></EnrolledViewDetails>,
-                loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`)
+                loader: ({ params }) => fetch(`https://online-learning-platform-eight-pi.vercel.app/courses/${params.id}`)
             },
             {
                 path: '/register',
@@ -53,7 +52,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/courses/filter',
-                loader: () => fetch(`http://localhost:3000/courses`),
+                loader: () => fetch(`https://online-learning-platform-eight-pi.vercel.app/courses`),
                 Component: AllCoursesFilter
 
             },
@@ -67,7 +66,7 @@ const router = createBrowserRouter([
 
                     {
                         path: '/dashboard/my_enrolled_course',
-                        loader: () => fetch(`http://localhost:3000/courses`),
+                        loader: () => fetch(`https://online-learning-platform-eight-pi.vercel.app/courses`),
                         Component: MyEnrolledCourse
                     },
 
@@ -82,7 +81,7 @@ const router = createBrowserRouter([
                     {
                         path: "/dashboard/my_added_course/update_course/:id",
                         Component: UpdatePage,
-                        loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`)
+                        loader: ({ params }) => fetch(`https://online-learning-platform-eight-pi.vercel.app/courses/${params.id}`)
                     }
                 ]
 
