@@ -148,7 +148,7 @@ const AddCourse = () => {
                             </div>
                             {/* description */}
                             <label className="label text-black font-semibold">Description :</label>
-                            <textarea type="text" name='description' required className="input text-black w-full md:w-1/2 lg:w-2/3 border p-3 rounded outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none h-40 " placeholder="description" />
+                            <textarea type="text" name='description' required className="input text-black w-full md:w-1/2 lg:w-2/3 border p-3 rounded outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none h-20 md:h-40 " placeholder="description" />
 
                             {/* button  */}
                             <button className="btn inline-block btn-primary font-semibold border-none hover:scale-105 mt-4"> Add Course</button>

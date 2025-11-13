@@ -43,9 +43,9 @@ const AddedMyCourseCard = ({ course,setAddedCourses,AddedCourses }) => {
     }
     // console.log(course)
     return (
-        <div className='border-2 border-gray-100 p-4 shadow-md shadow-gray-400 my-3 md:my-2 lg:my-5 rounded-lg lg:w-[300px] xl:w-full'>
+        <div className='border-2 border-gray-100 p-4 shadow-md shadow-gray-400 my-3 md:my-2 lg:my-5 rounded-lg w-full'>
             <div className=''>
-                <img className='w-full h-[200px]' src={imageURL} alt="" />
+                <img className='w-full rounded-xl h-[200px]' src={imageURL} alt="" />
             </div>
             <h1 className='text-[#070303] text-2xl my-2 text-start font-semibold'>{title}</h1>
             <Link to={`/courses/details/${_id}`} className='btn btn-primary p-2 w-full hover:scale-105 '>ViewDetails</Link>

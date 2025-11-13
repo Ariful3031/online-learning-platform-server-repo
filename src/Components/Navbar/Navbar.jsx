@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 
@@ -6,14 +6,29 @@ import logoImg from '../../assets/online logo.png'
 
 
 const Navbar = () => {
-
     const { user, logoutUser } = useContext(AuthContext);
+    const [theme,setTheme]=useState(localStorage.getItem('theme')|| "light")
+
+    useEffect(()=>{
+        const html = document.querySelector('html')
+        html.setAttribute("data-theme",theme)
+        localStorage.setItem("theme",theme)
+    },[theme])
+
+      const handleTheme = (checked) => {
+        // console.log(checked)
+       setTheme(checked?"dark":"light")
+    }
+
+
 
     const Links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/courses'>All-Courses</NavLink></li>
         <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
     </>
+
+  
     return (
         <div className="navbar bg-[#F0FDF4] px-5 md:px-10 lg:px-15 shadow-sm">
             <div className="navbar-start">
@@ -39,10 +54,16 @@ const Navbar = () => {
                     }
                 </ul>
             </div>
-            <div className="navbar-end">
-                {
-                    user ? (<button onClick={logoutUser} className="btn btn-primary hover:scale-105 text-white px-8 rounded-lg">Logout</button>) : (<Link to='/login' className="btn btn-primary hover:scale-105text-white px-8 rounded-lg">Login</Link>)
-                }
+            <div className="navbar-end flex items-center gap-5">
+                <div>
+                    <input onChange={(e) => handleTheme(e.target.checked)} type="checkbox" value="synthwave" className="toggle theme-controller" />
+                </div>
+
+                <div>
+                    {
+                        user ? (<button onClick={logoutUser} className="btn btn-primary hover:scale-105 text-white px-8 rounded-lg">Logout</button>) : (<Link to='/login' className="btn btn-primary hover:scale-105text-white px-8 rounded-lg">Login</Link>)
+                    }
+                </div>
             </div>
 
         </div>

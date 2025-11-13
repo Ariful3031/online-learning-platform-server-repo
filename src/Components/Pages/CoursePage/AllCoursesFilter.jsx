@@ -107,7 +107,7 @@ const navigation =useNavigation();
     }, [filters]);
     return (
         
-      <div className="w-11/12 mx-auto p-6">
+      <div className="p-6">
         {navigation.state === "loading" && <Loading></Loading>}
                 {/* Filter Section */}
                 <div className="bg-white shadow-md rounded-2xl p-6 mb-8 border border-gray-100">
@@ -117,7 +117,7 @@ const navigation =useNavigation();
     
                     {/* Search */}
                     <div>
-                         <h1 className="px-3 pb-2 font-medium">Course Title :</h1>
+                         <h1 className="px-3 pb-2 font-medium">Title:</h1>
                         <div className="flex flex-col sm:flex-row gap-4 mb-6">
                             <input
                                 type="text"
@@ -131,9 +131,9 @@ const navigation =useNavigation();
                     </div>
     
                     {/* Dropdown Filters */}
-                    <div className="grid grid-cols-4 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 mb-6">
                         <div className="flex flex-col">
-                            <h1 className="px-3 pb-2 font-medium">Category :</h1>
+                            <h1 className="px-3 pb-2 font-medium">Category:</h1>
                             <select
                                 name="category"
                                 value={filters.category}
@@ -154,7 +154,7 @@ const navigation =useNavigation();
                         </div>
     
                         <div className="flex flex-col">
-                            <h1 className="px-3 pb-2 font-medium">Price :</h1>
+                            <h1 className="px-3 pb-2 font-medium">Price:</h1>
                             <select
                                 name="price"
                                 value={filters.price}
@@ -170,7 +170,7 @@ const navigation =useNavigation();
                         </div>
     
                         <div className="flex flex-col">
-                            <h1 className="px-3 pb-2 font-medium">Duration :</h1>
+                            <h1 className="px-3 pb-2 font-medium">Duration:</h1>
                             <select
                                 name="duration"
                                 value={filters.duration}
@@ -185,7 +185,7 @@ const navigation =useNavigation();
     
                         </div>
                         <div className="flex flex-col">
-                            <h1 className="px-3 pb-2 font-medium">Featured :</h1>
+                            <h1 className="px-3 pb-2 font-medium">Featured:</h1>
                             <select
                                 name="featured"
                                 value={filters.featured}
@@ -223,7 +223,7 @@ const navigation =useNavigation();
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredCourses.length > 0 ? (
                             filteredCourses.map((course) => (
-                                <div key={course._id} className='border-2 border-gray-100 p-4 shadow-md shadow-gray-400 my-3 md:my-2 lg:my-5 rounded-lg lg:w-[300px] xl:w-full'>
+                                <div key={course._id} className='border-2 border-gray-100 p-4 shadow-md shadow-gray-400 my-3 md:my-2 lg:my-5 rounded-lg  w-full'>
                                     <div className=''>
                                         <img className='w-full rounded-xl h-[200px]' src={course.imageURL} alt="" />
                                     </div>

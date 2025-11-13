@@ -7,7 +7,7 @@ const CourseCard = ({ data }) => {
     const { title, imageURL, price, duration, category, _id } = data;
     // console.log(data)
     return (
-        <div className='border-2 border-gray-100 p-4 shadow-md shadow-gray-400 my-3 md:my-2 lg:my-5 rounded-lg lg:w-[300px] xl:w-full'>
+        <div className='border-2 border-gray-100 p-4 shadow-md shadow-gray-400 my-3 md:my-2 lg:my-5 rounded-lg w-full'>
             <div className=''>
                 <img className='w-full h-[200px]' src={imageURL} alt="" />
             </div>
