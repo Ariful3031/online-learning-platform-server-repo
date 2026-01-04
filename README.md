@@ -1,6 +1,6 @@
-# APARTSOL Living Solutions
+# Online learning platform
 
-ApartSol is a modern platform designed to simplify the process of buying, renting, and selling properties making it easy for individuals to discover, list, and manage real estate with ease and confidence..
+A modern real estate platform for buying, renting, and selling properties, featuring secure authentication, advanced search and filters, detailed listings, and user profile management.
 
 ## Features
 
