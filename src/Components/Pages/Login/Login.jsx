@@ -12,8 +12,15 @@ const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false)
     const { loginUser, googleSignin, setUser } = useContext(AuthContext);
+    const [err, setErr] = useState("")
     const location = useLocation();
     const navigate = useNavigate();
+
+    const passwordLengthExpression = /^.{6,}$/
+    const passwordNumberExpression = /(?=.*\d)/
+    const passwordUpperCaseExpression = /(?=.*[A-Z])/
+    const passwordLowerCaseExpression = /(?=.*[a-z])/
+    const passwordSpecialCharacterExpression = /(?=.*[@$!%*?&])/
 
     const emailRef = useRef();
 
@@ -30,12 +37,86 @@ const Login = () => {
                 console.log(error.message)
             })
     }
+    // demo user login handle
+    const handleDemoLogin = () => {
+        const demoEmail = "user@user.com";
+        const demoPassword = "@Password1";
+
+        loginUser(demoEmail, demoPassword)
+            .then(result => {
+                // console.log(result.user)
+                toast.success("login success")
+                navigate(`${location.state ? location.state : "/"}`)
+
+            })
+            .catch(error => {
+                // console.log(error.message)
+                if (error.code === "auth/email-already-in-use") {
+                    toast.error("This email is already registered.");
+                } else if (error.code === "auth/invalid-email") {
+                    toast.error("Please enter a valid email address.");
+                } else if (error.code === "auth/user-disabled") {
+                    toast.error("This account has been disabled.");
+                } else if (error.code === "auth/user-not-found") {
+                    toast.error("No account found with this email.");
+                } else if (error.code === "auth/wrong-password") {
+                    toast.error("Incorrect password.");
+                } else if (error.code === "auth/weak-password") {
+                    toast.error("Password is too weak. Use at least 6 characters, with numbers and symbols.");
+                } else if (error.code === "auth/too-many-requests") {
+                    toast.error("Too many attempts. Try again later.");
+                } else if (error.code === "auth/operation-not-allowed") {
+                    toast.error("This sign-in method is not enabled.");
+                } else if (error.code === "auth/requires-recent-login") {
+                    toast.error("Please login again to perform this action.");
+                } else if (error.code === "auth/invalid-credential") {
+                    toast.error("Invalid authentication credential.");
+                } else if (error.code === "auth/credential-already-in-use") {
+                    toast.error("This credential is already linked to another account.");
+                } else if (error.code === "auth/account-exists-with-different-credential") {
+                    toast.error("An account with this email exists using a different sign-in method.");
+                } else if (error.code === "auth/popup-closed-by-user") {
+                    toast.error("Authentication popup closed before completion.");
+                } else if (error.code === "auth/network-request-failed") {
+                    toast.error("Network error. Check your internet connection.");
+                } else {
+                    toast.error("Something went wrong. Please try again.");
+                }
+            })
+
+
+    }
 
     const handleLogin = (event) => {
         event.preventDefault();
         const email = event.target.email.value
         const password = event.target.password.value
         // console.log('click login', email, password)
+
+        if (!passwordSpecialCharacterExpression.test(password)) {
+            setErr('password must be one special character(@ $ ! % * ? &)')
+            return
+        }
+
+        else if (!passwordUpperCaseExpression.test(password)) {
+            setErr('password must be one uppercase letter')
+            return
+        }
+        else if (!passwordLowerCaseExpression.test(password)) {
+            setErr('password must be one lowercase letter')
+            return
+        }
+        else if (!passwordNumberExpression.test(password)) {
+            setErr('password must be one number(0-9)')
+            return
+        }
+
+        else if (!passwordLengthExpression.test(password)) {
+            setErr('password must be least 6')
+            return
+        }
+        event.target.reset();
+
         loginUser(email, password)
             .then(result => {
                 console.log(result.user)
@@ -99,23 +180,27 @@ const Login = () => {
     return (
         <div className='bg-[#FFF0E1] w-full mx-auto h-screen my-auto flex justify-center items-center'>
             <div className="card bg-base-100 w-full mx-auto  max-w-md shrink-0 shadow-2xl">
-                <h1 className='text-2xl text-[#15803D] font-semibold text-center mt-5'>Login Now</h1>
+                <h1 className='text-2xl text-[#15803D] dark:text-white font-semibold text-center mt-5'>Login Now</h1>
                 <div className="card-body">
                     <form onSubmit={handleLogin}>
                         <fieldset className="fieldset">
 
                             {/* Email */}
-                            <label className="label text-black font-semibold">Email</label>
-                            <input type="email" ref={emailRef} name='email' required className="input w-full text-[#D9D9D9] outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Email" />
+                            <label className="label text-black dark:text-white font-semibold">Email</label>
+                            <input type="email" ref={emailRef} name='email' required className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Email" />
 
                             {/* password */}
-                            <label className="label text-black font-semibold">Password</label>
+                            <label className="label text-black dark:text-white font-semibold">Password</label>
                             <div className='relative'>
-                                <input type={showPassword ? "text" : "password"} name='password' required className="input text-[#D9D9D9] w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="password" />
+                                <input type={showPassword ? "text" : "password"} name='password' required className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="password" />
 
                                 <button type='button' onClick={() => setShowPassword(!showPassword)} className="text-xl absolute right-2 top-2 z-50">{
                                     showPassword ? <IoMdEyeOff /> : <FaEye />}</button>
                             </div>
+
+                            {
+                                err && <p className='text-red-500 text-sm mt-2'>{err}</p>
+                            }
 
                             {/* forgot password */}
                             <div onClick={handleForgotPassword} className='mt-3'>
@@ -125,6 +210,14 @@ const Login = () => {
                             <button className="btn btn-primary font-semibold border-none hover:scale-105 mt-4">Login</button>
                         </fieldset>
                     </form>
+                    {/* Demo User Button */}
+                    <button
+                        type="button"
+                        onClick={handleDemoLogin}
+                        className="btn btn-primary"
+                    >
+                        Login as Demo User
+                    </button>
 
                     <div className='flex'>
                         <p className='text-xl'>----------------</p>

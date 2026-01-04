@@ -22,7 +22,7 @@ const MyAddedCourse = () => {
     },[user.email])
     return (
         <div className=''>
-            <h1 className='text-4xl font-semibold my-5  text-black w-[320px] mx-auto'>My Added Courses</h1>
+            <h1 className='text-4xl font-semibold my-10  text-black dark:text-white text-center'>My Added Courses</h1>
              {navigation.state === "loading" && <Loading></Loading>}
             <div className='grid sm:grid-cols-2 lg:grid-cols-3 md:gap-5'>
                 {

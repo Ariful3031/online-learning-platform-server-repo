@@ -90,24 +90,24 @@ const UpdatePage = () => {
                     <form onSubmit={handleUpdateCourse}>
                         <fieldset className="fieldset">
                             {/* Title */}
-                            <label className="label text-black font-semibold">Title :</label>
-                            <input type="text" name='title' required className="input text-black w-9/12 outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " defaultValue={updateCourseData.title} />
+                            <label className="label text-black dark:text-white font-semibold">Title :</label>
+                            <input type="text" name='title' required className="input text-black dark:text-white w-9/12 outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " defaultValue={updateCourseData.title} />
                             {/* Email */}
-                            <label className="label text-black font-semibold">Email :</label>
-                            <input type="email" name='email' required className="input w-9/12 text-black outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " readOnly defaultValue={user.email} />
+                            <label className="label text-black dark:text-white font-semibold">Email :</label>
+                            <input type="email" name='email' required className="input w-9/12 text-black dark:text-white outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " readOnly defaultValue={user.email} />
                             {/* image url */}
-                            <label className="label text-black font-semibold">image URL :</label>
-                            <input type="url" name='image' required className="input w-full text-black  outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " defaultValue={updateCourseData.imageURL} />
+                            <label className="label text-black dark:text-white font-semibold">image URL :</label>
+                            <input type="url" name='image' required className="input w-full text-black dark:text-white  outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " defaultValue={updateCourseData.imageURL} />
                             <div className='grid grid-cols-2 gap-5'>
 
                                 <div>
                                     {/* Category */}
-                                    <label className="label text-black font-semibold">Category :</label>
+                                    <label className="label text-black dark:text-white font-semibold">Category :</label>
                                     <select
                                         value={categoryState}
                                         onChange={(e) => setCategoryState(e.target.value)}
                                         required
-                                        className="select text-black w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none"
+                                        className="select text-black dark:text-white w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none"
                                     >
                                         <option value="" disabled>Pick a Category</option>
                                         <option value="Web Development">Web Development</option>
@@ -123,8 +123,8 @@ const UpdatePage = () => {
                                 </div>
                                 <div>
                                     {/* duration */}
-                                    <label className="label text-black font-semibold">Duration :</label>
-                                    <input type="text" name='duration' required className="input text-black w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " defaultValue={updateCourseData.duration} />
+                                    <label className="label text-black dark:text-white font-semibold">Duration :</label>
+                                    <input type="text" name='duration' required className="input text-black dark:text-white w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " defaultValue={updateCourseData.duration} />
                                 </div>
 
                             </div>
@@ -132,18 +132,18 @@ const UpdatePage = () => {
                             <div className='grid grid-cols-2 gap-5'>
                                 <div>
                                     {/* price */}
-                                    <label className="label text-black font-semibold">Price :</label>
-                                    <input type="number" name='price' required className="input text-black w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " defaultValue={updateCourseData.price} />
+                                    <label className="label text-black dark:text-white font-semibold">Price :</label>
+                                    <input type="number" name='price' required className="input text-black dark:text-white w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " defaultValue={updateCourseData.price} />
                                 </div>
                                 <div>
                                     {/* isFeatured */}
-                                    <label className="label text-black font-semibold">Is Featured :</label>
+                                    <label className="label text-black dark:text-white font-semibold">Is Featured :</label>
                                     <select
                                         value={isFeaturedState}
                                         onChange={(e) => setIsFeaturedState(e.target.value)}
 
                                         required
-                                        className="select text-black w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none"
+                                        className="select text-black dark:text-white w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none"
                                     >
                                         <option value="" disabled>Pick a isFeatured</option>
                                         <option value="true">true</option>
@@ -154,8 +154,8 @@ const UpdatePage = () => {
 
                             </div>
                             {/* description */}
-                            <label className="label text-black font-semibold">Description :</label>
-                            <textarea type="text" name='description' required className="input text-black w-full md:w-1/2 lg:w-2/3 border p-3 rounded outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none h-40 " defaultValue={updateCourseData.description} />
+                            <label className="label text-black dark:text-white font-semibold">Description :</label>
+                            <textarea type="text" name='description' required className="input text-black dark:text-white w-full md:w-1/2 lg:w-2/3 border p-3 rounded outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none h-40 " defaultValue={updateCourseData.description} />
 
                             {/* button  */}
                             <button type='submit' className="btn inline-block btn-primary font-semibold border-none hover:scale-105 mt-4">Update</button>

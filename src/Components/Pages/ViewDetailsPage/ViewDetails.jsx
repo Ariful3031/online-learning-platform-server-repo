@@ -1,22 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FaBangladeshiTakaSign, FaGalacticSenate } from 'react-icons/fa6';
-import { useNavigation, useParams } from 'react-router';
+import {useLocation, useNavigate, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/AuthContext';
 import Loading from '../../Loading/Loading';
 
 const ViewDetails = () => {
-    const { user,loading,setLoading } = useContext(AuthContext)
-    const navigation = useNavigation()
+    const { user, loading, setLoading } = useContext(AuthContext)
+
+    const navigate = useNavigate();
+    const location = useLocation();
     const [course, setCourse] = useState([])
-   
+
 
     const { id } = useParams();
 
     useEffect(() => {
         fetch(`https://online-learning-platform-eight-pi.vercel.app/courses/${id}`, {
             headers: {
-                authorization: `Bearer ${user.accessToken}`
+                authorization: `Bearer ${user?.accessToken}`
 
             }
         })
@@ -26,10 +27,27 @@ const ViewDetails = () => {
                 setCourse(data)
                 setLoading(false)
             })
-    }, [id,setLoading,user])
-    const { title, imageURL, category, price, description, duration, _id } = course;
+    }, [id, setLoading, user])
+    const {
+        title,
+        description,
+        imageURL,
+        price,
+        duration,
+        category,
+        isFeatured,
+        _id,
+    } = course;
 
     const handleEnrollButton = () => {
+
+        if (!user) {
+            navigate("/login", {
+                state: location.pathname ,
+                replace: true,
+            });
+            return;
+        }
 
         const enrolledUser = {
             course_id: _id,
@@ -38,7 +56,7 @@ const ViewDetails = () => {
             buyer_image: user.photoURL
         }
 
-        fetch('online-learning-platform-eight-pi.vercel.app/enrolled', {
+        fetch('https://online-learning-platform-eight-pi.vercel.app/enrolled', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -50,50 +68,69 @@ const ViewDetails = () => {
                 console.log(data)
                 toast.success('Enrolled successful')
             })
+            .catch(err =>
+                toast.error(err)
+            )
 
     }
-    if(loading){
+    if (loading) {
         return <Loading></Loading>
     }
     return (
-        <div className='bg-[#F1F5E8]'>
-            <div className='w-11/12  mx-auto p-10'>
-                <div className=' md:grid md:grid-cols-3'>
-                    <div className='md:col-span-2'>
-                        {navigation.state === "loading" && <Loading></Loading>}
-                        <img className='w-full h-[300px] md:h-[500px] rounded-xl' src={imageURL} alt="" />
-                    </div>
+        <div className="w-11/12 mx-auto py-8 ">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
 
-                    <div className='md:ml-2 lg:m-4 mt-4 rounded-xl lg:my-0 p-3 bg-white border-gray-200'>
-                        <h1 className='text-2xl font-semibold text-center my-3'>{title}</h1>
-                        <div className='flex items-center justify-between text-2xl font-semibold'>
-                            <div className='inline-block bg-[#B9F8CF] px-3 py-1 my-2 rounded-full'>
-                                <h2>{category}</h2>
-                            </div>
-                            <div className='flex items-center'>
-                                <FaBangladeshiTakaSign />
-                                <p>{price}</p>
-                            </div>
+                {/* Image Section */}
+                <div className="relative">
+                    {isFeatured && (
+                        <span className="badge badge-primary absolute top-3 left-3 md:top-4 md:left-4">
+                            Featured
+                        </span>
+                    )}
+
+                    <img
+                        src={imageURL}
+                        alt={title}
+                        className="w-full h-64 sm:h-80 md:h-96 lg:h-[420px] object-cover rounded-xl"
+                    />
+                </div>
+
+                {/* Content Section */}
+                <div className="space-y-5">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
+                        {title}
+                    </h1>
+
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                        {description}
+                    </p>
+
+                    {/* Meta Info */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div className="p-4 rounded-lg bg-base-200">
+                            <span className="font-medium">Category:</span> {category}
                         </div>
-                        <div className='w-full border-b-2 underline my-3'></div>
-                        <p className='text-gray-500'>Course Duration : {duration}</p>
-                        <p className='text-gray-500'>Total Lecture : 0</p>
-                        <p className='text-gray-500'>Total Exam : 0</p>
-                        <p className='text-gray-500'>Live Class : 0</p>
-
-                        <button onClick={handleEnrollButton} className='btn btn-primary p-2 w-full mt-3 hover:scale-105 '>Enroll Now</button>
+                        <div className="p-4 rounded-lg bg-base-200">
+                            <span className="font-medium">Duration:</span> {duration}
+                        </div>
+                        <div className="p-4 rounded-lg bg-base-200">
+                            <span className="font-medium">Price:</span> ৳{price}
+                        </div>
+                        <div className="p-4 rounded-lg bg-base-200">
+                            <span className="font-medium">Level:</span> Beginner
+                        </div>
                     </div>
 
-                </div>
-                <div>
-                    <h1 className='text-2xl md:my-2 font-medium'>Description:</h1>
-                    <p>{description}</p>
+                    {/* CTA */}
+                    <div className="pt-4">
+                        <button onClick={handleEnrollButton} className='btn btn-primary w-full sm:w-auto sm:px-10 hover:scale-105 '>Enroll Now</button>
 
-                </div>
 
+                    </div>
+                </div>
             </div>
-
         </div>
+
     );
 };
 

@@ -153,25 +153,25 @@ const Register = () => {
     return (
         <div className='bg-[#FFF0E1] w-full mx-auto h-screen my-auto flex justify-center items-center'>
             <div className=" card bg-base-100 w-full mx-auto max-w-md shrink-0 shadow-2xl">
-                <h1 className='text-2xl text-[#15803D] font-semibold text-center mt-5'>Signup Now</h1>
+                <h1 className='text-2xl text-[#15803D] dark:text-white font-semibold text-center mt-5'>Signup Now</h1>
                 <div className="card-body">
                     <form onSubmit={handleSignup}>
                         <fieldset className="fieldset">
                             {/* Name */}
-                            <label className="label text-black font-semibold">Name</label>
-                            <input type="text" name='name' required className="input text-[#D9D9D9] w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Name" />
+                            <label className="label text-black dark:text-white font-semibold">Name</label>
+                            <input type="text" name='name' required className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Name" />
                             {/* image url */}
 
-                            <label className="label text-black font-semibold">URL</label>
-                            <input type="url" name='image' required className="input w-full text-[#D9D9D9]  outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Image Url" />
+                            <label className="label text-black dark:text-white font-semibold">URL</label>
+                            <input type="url" name='image' required className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Image Url" />
                             {/* Email */}
-                            <label className="label text-black font-semibold">Email</label>
-                            <input type="email" name='email' required className="input w-full text-[#D9D9D9] outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Email" />
+                            <label className="label text-black dark:text-white font-semibold">Email</label>
+                            <input type="email" name='email' required className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="Email" />
 
                             {/* password */}
-                            <label className="label text-black font-semibold">Password</label>
+                            <label className="label text-black dark:text-white font-semibold">Password</label>
                             <div className='relative'>
-                                <input type={showPassword ? "text" : "password"} name='password' required className="input w-full text-[#747474] outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="password" />
+                                <input type={showPassword ? "text" : "password"} name='password' required className="input w-full outline-none focus:ring-2 focus:ring-[#02A53B] focus:border-none " placeholder="password" />
                                 <button type='button' onClick={() => setShowPassword(!showPassword)} className="text-xl absolute right-2 top-2 z-50">{
                                     showPassword ? <IoMdEyeOff /> : <FaEye />}</button>
                             </div>

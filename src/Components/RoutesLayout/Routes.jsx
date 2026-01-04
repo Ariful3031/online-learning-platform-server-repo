@@ -15,13 +15,17 @@ import UpdatePage from "../Pages/DashboardPages/UpdatePage/UpdatePage";
 import AllCoursesFilter from "../Pages/CoursePage/AllCoursesFilter";
 import ErrorPage from "../Pages/ErrorPage";
 import Error from "../Pages/Error";
+import FreeStudyRoom from "../Pages/HomePage/FreeStudyRoom";
+import ExamCourses from "../Pages/ExamCourses/ExamCourses";
+import PremimumCourses from "../Pages/PremiumCourses/PremimumCourses";
+import Profile from "../Pages/Profile/Profile";
 
 const router = createBrowserRouter([
     {
         path: "/",
         Component: MainLayout,
         hydrateFallbackElement: <p>loading</p>,
-       
+
         children: [
             {
                 index: true,
@@ -29,15 +33,12 @@ const router = createBrowserRouter([
             },
             {
                 path: "/courses",
-                loader: () => fetch(`https://online-learning-platform-eight-pi.vercel.app/courses`),
                 Component: CoursesPage
             },
             {
                 path: '/courses/details/:id',
-                element:
-                    <PrivateRoute>
-                        <ViewDetails></ViewDetails>
-                    </PrivateRoute>
+                element: <ViewDetails></ViewDetails>
+
 
 
             },
@@ -55,6 +56,22 @@ const router = createBrowserRouter([
                 Component: Login
             },
             {
+                path: '/profile',
+                Component: Profile
+            },
+            {
+                path: '/free_study_room',
+                Component: FreeStudyRoom
+            },
+            {
+                path: '/exam_courses',
+                Component: ExamCourses
+            },
+            {
+                path: '/premimum_courses',
+                Component: PremimumCourses
+            },
+            {
                 path: '/courses/filter',
                 loader: () => fetch(`https://online-learning-platform-eight-pi.vercel.app/courses`),
                 Component: AllCoursesFilter
@@ -62,7 +79,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                   errorElement: <Error></Error>,
+                errorElement: <Error></Error>,
                 element:
                     <PrivateRoute>
                         <DashBoardLayout></DashBoardLayout>
@@ -92,10 +109,10 @@ const router = createBrowserRouter([
 
 
             },
-        {
-            path:"*",
-            element:<ErrorPage></ErrorPage>
-        }
+            {
+                path: "*",
+                element: <ErrorPage></ErrorPage>
+            }
         ]
     },
 

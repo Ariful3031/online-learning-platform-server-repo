@@ -27,7 +27,7 @@ const MyEnrolledCourse = () => {
     // console.log(userEnrolledCourses)
     return (
         <div>
-            <h1 className='text-4xl font-semibold my-5 text-black text-center'>My Enrolled Courses</h1>
+            <h1 className='text-4xl font-semibold my-10  text-black dark:text-white text-center'>My Enrolled Courses</h1>
             <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-5'>
             {
                 userEnrolledCourses.map(enrolledCourse => <MyEnrolledCard key={enrolledCourse._id} enrolledCourse={enrolledCourse}></MyEnrolledCard>)
