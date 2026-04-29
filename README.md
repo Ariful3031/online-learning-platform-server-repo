@@ -1,23 +1,30 @@
 # Online learning platform
 
-A modern real estate platform for buying, renting, and selling properties, featuring secure authentication, advanced search and filters, detailed listings, and user profile management.
+A modern online learning platform for browsing and enrolling in courses with secure authentication and a responsive user experience.
 
 ## Features
 
-- **User Authentication**: Secure user authentication system with login/register functionality.
-- **Properties Listings**: Browse through a wide range of flat listings with detailed information about location, price, and amenities.
-- **Search and Filter**: Easily search for properties based on Title, Category, price range, Duration,Featured and more.
-- **Profile Management**: Manage your profile information and preferences to find the best match.
+- **Authentication System**: Secure login & registration using Firebase authentication
+- **Course Listings**: Browse a wide range of courses with detailed information
+- **Search & Filter**: Easily find courses by title, category, and other criteria
+- **User Profile**: Manage user profile and enrolled courses
+- **Smooth UI Animations**: Enhanced user experience using Framer Motion
+- **Real-time Notifications**: User feedback with React Toastify and SweetAlert2
+- **Modern UI Design**: Clean and responsive interface built with Tailwind CSS
+- **Client-side Routing**: Seamless navigation using React Router
 
 
 ## Technologies Used
 
-- **Frontend**: React.js, Typescript
-- **Backend**: Express.js
-- **Authentication**: JWT (JSON Web Tokens)
+- **Frontend**: React.js, React Router
+- **Backend**: Express.js, Node.js
+- **Authentication**:Firebase Authentication, JWT (JSON Web Tokens)
 - **Database**: mongodb
-- **Styling**: Tailwind CSS
+- **Styling & UI**: Tailwind CSS, Framer Motion, React Icons
+- **Notifications & Alerts**: React Toastify, SweetAlert2
+- **Tools & Build**: Vite
 - **Deployment**: Vercel (Backend), Netlify (Frontend)
+
 
 ## Getting Started
 
